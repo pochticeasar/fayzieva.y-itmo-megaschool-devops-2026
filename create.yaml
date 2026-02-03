@@ -1,0 +1,16 @@
+---
+- name: create group
+  hosts: localhost
+  become: true
+  remote_user: root
+  tasks:
+  - name: Create the Admin Group 
+    group:
+        name: admins 
+        state: present
+        gid: 1002
+  - name: Create the Dev Group
+    group:
+        name: developers 
+        state: present
+        gid: 1003
