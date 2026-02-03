@@ -10,3 +10,7 @@ ansible-playbook create.yaml
 
 ![](image.png)
 
+создали юзеров, наделили админов sudo без пароля
+
+Проверка: 
+![alt text](image-1.png)

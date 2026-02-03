@@ -1,5 +1,5 @@
 ---
-- name: create group
+- name: create group and users
   hosts: localhost
   become: true
   remote_user: root
@@ -14,3 +14,25 @@
         name: developers 
         state: present
         gid: 1003
+
+  - name: Add admin1 and admin2 to admin group
+    user:
+      name: "{{ item }}"
+      groups: admins
+    with_items:
+      - admins1
+      - admins2
+
+  - name: Add developer1 and developer2 to developers group
+    user:
+      name: "{{ item }}"
+      groups: developers
+    with_items:
+      - developer1
+      - developer2
+  
+  - name: Grant admin group sudo privileges
+    lineinfile:
+      path: /etc/sudoers
+      line: "%admins ALL=(ALL) NOPASSWD: ALL"
+      state: present
